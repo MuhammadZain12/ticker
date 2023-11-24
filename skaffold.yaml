@@ -1,0 +1,17 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: ticker
+build:
+  artifacts:
+    - image: muhammadzain12/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+manifests:
+  rawYaml:
+    - infra/k8s/*
